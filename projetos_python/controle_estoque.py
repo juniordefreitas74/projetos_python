@@ -143,6 +143,7 @@ while True:
             atual_venda["vendas"] += 1
 
             print(atual_venda)
+            print(atual_venda)
 
 
     else:
