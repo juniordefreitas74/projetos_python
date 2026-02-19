@@ -25,10 +25,11 @@ while True:
             novo_produto = input(" Digite o produto:    ").lower()
             for duplicado in produtos:
                 if novo_produto == duplicado["nome"]:
-                    print("\n### O produto já foi cadastrado no estoque. ###\n")
+                    print(
+                        "\n \033[31m ### O produto já foi cadastrado no estoque. ### \033[m\n")
                     existe = True
                     break
-            if existe:
+            if existe == True:
                 break
 
             novo_preco = float(input("Digite o valor do produto: "))
@@ -45,7 +46,8 @@ while True:
 
             while True:
 
-                novo_cadstro = input("quer inserir mais no estoque S/N? ").lower()
+                novo_cadstro = input(
+                    "quer inserir mais no estoque S/N? ").lower()
 
                 if novo_cadstro == "n":
                     continuar = False
@@ -104,11 +106,13 @@ while True:
                 print(
                     f"{lista_estoque['nome']} tem o preço cadastrado de R${lista_estoque['preco']:.2f}"
                 )
-                atualizar_preco = input("Você deseja alterar o valor S/N?: ").lower()
+                atualizar_preco = input(
+                    "Você deseja alterar o valor S/N?: ").lower()
                 if atualizar_preco == "n":
                     break
                 elif atualizar_preco == "s":
-                    novo_valor = input("Digite o novo preço para esse produto: ")
+                    novo_valor = input(
+                        "Digite o novo preço para esse produto: ")
                     lista_estoque["preco"] = int(novo_valor)
                     print(
                         f"Agora {lista_estoque['nome']} tem o valor de R${lista_estoque['preco']:.2f} "
@@ -132,22 +136,14 @@ while True:
     elif menu == 4:
 
         print(produtos)
-        encontrado2= False
+        encontrado2 = False
 
         venda = input("Digite o nome do produto: ")
         quantidade_venda = int(input("Quantidade: "))
         for atual_venda in produtos:
             if atual_venda["nome"] == venda:
-            atual_venda["estoque"] -= quantidade_venda
-            atual_venda["vendidos"] += quantidade_venda
-            atual_venda["vendas"] += 1
+                atual_venda["estoque"] -= quantidade_venda
+                atual_venda["vendidos"] += quantidade_venda
+                atual_venda["vendas"] += 1
 
-            print(atual_venda)
-           
-
-
-    else:
-        break
-    print("teste github")
-
->>>>>>> 042274f48434ef5e3ee833b99c61ffd8b9eabee7
+                print(atual_venda)
