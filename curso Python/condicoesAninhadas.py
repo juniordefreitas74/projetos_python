@@ -60,24 +60,35 @@ import datetime
 
 nasc = int(input("Digite o ano do seu nascimento:"))
 anoAtual = datetime.date.today().year
-validacao = anoAtual - nasc
-if validacao < 18:
-    print(f"Você ainda não precisa se alistar pois vc tem {validacao} anos")
-elif validacao == 18:
-    print(f"Você precisa se alistar pois vc tem {validacao} anos")
+idade = anoAtual - nasc
+if idade < 18:
+    print(f"Você ainda não precisa se alistar pois vc tem {idade} anos")
+    print(f"e ainda faltam {18-idade} anos para o alistamento")
+    print(f"Você terá que se alistar no ano de {(18-idade)+anoAtual}")
+
+elif idade == 18:
+    print(f"Você precisa se alistar pois vc tem {idade} anos")
 else:
-    print(f"Você já passou da época de alistar pois vc tem {validacao} anos")
+    print(f"Você já passou da época de alistar pois vc tem {idade} anos")
+    print(f"Você deveria ter se alistada há {idade-18} anos atrás")
+    print(f"Você deveria ter se alistado em {anoAtual-(idade-18)}")
 
 # exercicio 40
 n1 = float(input("Digite a primeira nota:"))
 n2 = float(input("Digite a segunda nota:"))
 media = (n1 + n2) / 2
 if media < 5:
-    print(f"Sua média foi de {media} \033[1;31m ALUNO REPROVADO \033[m")
+    print(
+        f"Você tirou {n1} e {n2} Sua média foi de {media:.1f} \033[1;31m ALUNO REPROVADO \033[m"
+    )
 elif media >= 5 and media < 6.9:
-    print(f"Sua média foi de {media} \033[1;33m ALUNO EM RECUPERAÇÃO \033[m")
+    print(
+        f"Você tirou {n1} e {n2} Sua média foi de {media:.1f} \033[1;33m ALUNO EM RECUPERAÇÃO \033[m"
+    )
 else:
-    print(f"Sua média foi de {media} \033[1;32m ALUNO APROVADO \033[m")
+    print(
+        f"Você tirou {n1} e {n2} Sua média foi de {media:.1f} \033[1;32m ALUNO APROVADO \033[m"
+    )
 
 # exercicio 41
 import datetime
