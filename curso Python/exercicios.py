@@ -1,20 +1,59 @@
-# exercicio 42
+# exercicio 45
+import random
+import time
 
-# desafio 35
-# a<b+c
-# 𝑏<𝑎+𝑐
-# c<a+b
-a = float(input("Digite o tamanho da primeira reta: "))
-b = float(input("Digite o tamanho da segunda reta: "))
-c = float(input("Digite o tamanho da terceira reta: "))
-if a < b + c and b < a + c and c < a + b:
-    if a == b and a == c:
-        print("Forma triângulo Equilátero")
-    elif a == b and a != c or a == c and a != b or b == c and b != a:
-        print("Forma um triâgulo Isóceles")
+print(
+    """ Vamos jogar Jokenpô!
+      ======> Escolha <=====
+      1- Para PEDRA
+      2- Para PAPEL
+      3- Para TESOURA
+      """
+)
+jogador = int(input("Digite a sua escolha: "))
+escolha = ["PEDRA", "PAPEL", "TESOURA"]
+sorteio = random.choice(escolha)
+print(f"{"JO":.<6}")
+time.sleep(1)
+print(f"{"KEN":.^6}")
+time.sleep(1)
+print(f"{"PO!":.>6}")
+time.sleep(0.3)
+sorteio = "PAPEL"
+
+if sorteio == "PEDRA":
+    if jogador == 1:
+        print(f"\033[43m EMPATOU \033[m")
+        jogador = "PEDRA"
+
+    elif jogador == 2:
+        print(f"\033[42m VOCÊ GANHOU \033[m")
+        jogador = "PAPEL"
+
+    elif jogador == 3:
+        print(f"\033[41m VOCÊ PERDEU! \033[m")
+        jogador = "TESOURA"
+
     else:
-        print("Forma um triâgulo Escaleno")
+        print("JOGADA INVÁLIDA!")
 
 
-else:
-    print("Não forma um triâgulo")
+if sorteio == "PAPEL":
+    if jogador == 2:
+        print(f"\033[43m EMPATOU \033[m")
+        jogador = "PAPEL"
+
+    elif jogador == 3:
+        print(f"\033[42m VOCÊ GANHOU \033[m")
+        jogador = "TESOURA"
+
+    elif jogador == 1:
+        print(f"\033[41m VOCÊ PERDEU! \033[m")
+        jogador = "PEDRA"
+
+    else:
+        print("\033[35m JOGADA INVÁLIDA! \033[m")
+        sorteio = "nenhuma opção"
+        jogador = "OPÇAO ERRADA"
+
+print(f"Você escolheu {jogador} e o computador escolheu {sorteio}!")

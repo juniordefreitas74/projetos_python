@@ -130,16 +130,15 @@ else:
 # exercicio 43
 # peso / (altura x altura)
 
-peso = float(input("Digite seu peso: "))
+peso = float(input("Digite seu peso (Kg): "))
 altura = float(input("Digite sua altura: "))
-altura = altura / 100
 imc = peso / (altura**2)
 if imc < 18.5:
     print(f"Seu Imc é de {imc:.1f} e você está ABAIXO do peso")
 elif imc >= 18.5 and imc < 25:
     print(f"Seu Imc é de {imc:.1f} e você está com o PESO IDEAL.")
 elif imc >= 25 and imc < 30:
-    print(f"Seu Imc é de {imc:.1f} e você está com o SOBRE PESO.")
+    print(f"Seu Imc é de {imc:.1f} e você está com o SOBREPESO.")
 elif imc >= 30 and imc < 40:
     print(f"Seu Imc é de {imc:.1f} e você está com OBESIDADE")
 else:
@@ -147,34 +146,47 @@ else:
 
 # exercicio 44
 print(
+    f"{' LOJAS FF ':=^40}\n"
+)  # USA UM CAMPO DE 40 ESPAÇOS CENTRALIZADO E O RESTANTE PREENCHIDO COM =
+compras = float(input("Digite o valor das compras: "))
+print(
     """O fone de ouvido custa R$ 50,00, escolha a forma de pagamento!
-      0- À vista dinheiro ou cheque
-      1- À vista no cartão
-      2- 2x no cartão de crédito
-      3- 3x ou mais no cartão de crédito
+      [1] À vista dinheiro ou cheque
+      [2] À vista no cartão
+      [3] 2x no cartão de crédito
+      [4] 3x ou mais no cartão de crédito
       """
 )
 escolha = int(input("Digite a opção desejada: "))
-fone_de_ouvido = 100
-if escolha == 0:
-    print(
-        f"O fone custa R${fone_de_ouvido:.2f} e com o desconto de 10% fica\033[32m R${fone_de_ouvido*0.9:.2f}\033[m"
-    )
-elif escolha == 1:
-    print(
-        f"O fone custa R${fone_de_ouvido:.2f} e com o desconto de 5% fica\033[32m R${fone_de_ouvido*0.95:.2f}\033[m"
-    )
+
+if escolha == 1:
+    total = compras * 0.9
+
+
 elif escolha == 2:
-    print(
-        f"O fone custa R${fone_de_ouvido:.2f} e você pagara\033[32m R${fone_de_ouvido:.2f}\033[m em 2x de R${fone_de_ouvido/2:.2f}"
-    )
+    total = compras * 0.95
+
 elif escolha == 3:
+    total = compras
     print(
-        f"O fone custa R${fone_de_ouvido:.2f} e você pagara\033[32m R${fone_de_ouvido*1.2:.2f}\033[m em 3x de R${(fone_de_ouvido*1.2)/3:.2f}"
+        f"Sua compra de R${total:.2f} será parcelada em 2x de R${total/2:.2f} sem juros"
     )
+
+elif escolha == 4:
+    parcela_qtd = int(input("Em quantas vezes: "))
+    total = compras * 1.2
+    parcela = total / parcela_qtd
+    print(f"Sua compra será parcelada em {parcela_qtd}X de R${total/parcela_qtd:.2f}")
+else:
+    total = compras
+    print("OPÇÃO DE PAGAMENTO INVÁLIDA")
+
+
+print(f"Sua compra de R${compras:.2f} vai custar \033[32m R${total:.2f}\033[m")
 
 # exercicio 45
 import random
+import time
 
 print(
     """ Vamos jogar Jokenpô!
@@ -184,28 +196,50 @@ print(
       3- Para TESOURA
       """
 )
-digite = int(input("Digite a sua escolha: "))
+jogador = int(input("Digite a sua escolha: "))
 escolha = ["PEDRA", "PAPEL", "TESOURA"]
 sorteio = random.choice(escolha)
+print(f"{"JO":.<6}")
+time.sleep(1)
+print(f"{"KEN":.^6}")
+time.sleep(1)
+print(f"{"PO!":.>6}")
+time.sleep(0.3)
+sorteio = "PAPEL"
+
+if sorteio == "PEDRA":
+    if jogador == 1:
+        print(f"\033[43m EMPATOU \033[m")
+        jogador = "PEDRA"
+
+    elif jogador == 2:
+        print(f"\033[42m VOCÊ GANHOU \033[m")
+        jogador = "PAPEL"
+
+    elif jogador == 3:
+        print(f"\033[41m VOCÊ PERDEU! \033[m")
+        jogador = "TESOURA"
+
+    else:
+        print("JOGADA INVÁLIDA!")
 
 
-if digite == 1 and sorteio == "PAPEL":
-    print(f"Você \033[31mPERDEU\033[m eu escolhi \033[1;33m{sorteio}\033[m")
-elif digite == 1 and sorteio == "PEDRA":
-    print(f" \033[33mEMPATE\033[m eu também escolhi \033[1;33m{sorteio}\033[m")
-elif digite == 1 and sorteio == "TESOURA":
-    print(f"Você \033[32mGANHOU\033[m eu escolhi \033[1;33m{sorteio}\033[m")
+if sorteio == "PAPEL":
+    if jogador == 2:
+        print(f"\033[43m EMPATOU \033[m")
+        jogador = "PAPEL"
 
-elif digite == 2 and sorteio == "TESOURA":
-    print(f"Você \033[31mPERDEU\033[m eu escolhi \033[1;33m{sorteio}\033[m")
-elif digite == 2 and sorteio == "PAPEL":
-    print(f" \033[33mEMPATE\033[m eu também escolhi \033[1;33m{sorteio}\033[m")
-elif digite == 2 and sorteio == "PEDRA":
-    print(f"Você \033[32mGANHOU\033[m eu escolhi \033[1;33m{sorteio}\033[m")
+    elif jogador == 3:
+        print(f"\033[42m VOCÊ GANHOU \033[m")
+        jogador = "TESOURA"
 
-elif digite == 3 and sorteio == "PEDRA":
-    print(f"Você \033[31mPERDEU\033[m eu escolhi \033[1;33m{sorteio}\033[m")
-elif digite == 3 and sorteio == "TESOURA":
-    print(f" \033[33mEMPATE\033[m eu também escolhi \033[1;33m{sorteio}\033[m")
-elif digite == 3 and sorteio == "PAPEL":
-    print(f"Você \033[32mGANHOU\033[m eu escolhi \033[1;33m{sorteio}\033[m")
+    elif jogador == 1:
+        print(f"\033[41m VOCÊ PERDEU! \033[m")
+        jogador = "PEDRA"
+
+    else:
+        print("\033[35m JOGADA INVÁLIDA! \033[m")
+        sorteio = "nenhuma opção"
+        jogador = "OPÇAO ERRADA"
+
+print(f"Você escolheu {jogador} e o computador escolheu {sorteio}!")
