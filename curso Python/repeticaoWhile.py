@@ -24,3 +24,9 @@ while acerto == True:
         acerto = False
     else:
         print("Não foi esse número que eu pensei, tente novamente!")
+
+# ex 59
+numero = []
+for n in range(1, 3):
+    num = int(input(f"Digite o {n}º número: "))
+    numero.append(num)

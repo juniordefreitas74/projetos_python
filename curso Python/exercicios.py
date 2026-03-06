@@ -1,4 +1,4 @@
-# ex 58
+# ex 59
 numero = []
 for n in range(1, 3):
     num = int(input(f"Digite o {n}º número: "))
