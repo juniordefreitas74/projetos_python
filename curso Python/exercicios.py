@@ -1,59 +1,46 @@
-# exercicio 45
-import random
-import time
+# ex 58
+numero = []
+for n in range(1, 3):
+    num = int(input(f"Digite o {n}º número: "))
+    numero.append(num)
 
-print(
-    """ Vamos jogar Jokenpô!
-      ======> Escolha <=====
-      1- Para PEDRA
-      2- Para PAPEL
-      3- Para TESOURA
-      """
-)
-jogador = int(input("Digite a sua escolha: "))
-escolha = ["PEDRA", "PAPEL", "TESOURA"]
-sorteio = random.choice(escolha)
-print(f"{"JO":.<6}")
-time.sleep(1)
-print(f"{"KEN":.^6}")
-time.sleep(1)
-print(f"{"PO!":.>6}")
-time.sleep(0.3)
-sorteio = "PAPEL"
+print(numero)
+ok = True
+while ok == True:
+    print(
+        """
+======== MENU ========
+[1] SOMAR
+[2] MULTIPLICAR
+[3] MAIOR
+[4] NOVOS NÚMEROS
+[5] SAIR DO PROGRAMA
+=======================
+"""
+    )
+    menu = int(input("Digite a opção desejada: "))
+    if menu == 1:
+        som = sum(numero)
+        print(f"\nA soma dos números é = \033[31m{som}\033[m")
 
-if sorteio == "PEDRA":
-    if jogador == 1:
-        print(f"\033[43m EMPATOU \033[m")
-        jogador = "PEDRA"
+    elif menu == 2:
 
-    elif jogador == 2:
-        print(f"\033[42m VOCÊ GANHOU \033[m")
-        jogador = "PAPEL"
+        teste = 1
+        for i in range(len(numero)):
+            mult = (numero[i]) * teste
+            teste = mult
+        print(f"A multiplicação dos números é = \033[1;31m{teste}\033[m")
 
-    elif jogador == 3:
-        print(f"\033[41m VOCÊ PERDEU! \033[m")
-        jogador = "TESOURA"
+    elif menu == 3:
+        maior = max(numero)
+        print(f"\nO maior número digitado foi \033[31m{maior}\033[m")
 
+    elif menu == 4:
+        adic = int(input("Qual número deseja adicionar: "))
+        numero.append(adic)
+        print(numero)
+    elif menu == 5:
+        ok = False
     else:
-        print("JOGADA INVÁLIDA!")
-
-
-if sorteio == "PAPEL":
-    if jogador == 2:
-        print(f"\033[43m EMPATOU \033[m")
-        jogador = "PAPEL"
-
-    elif jogador == 3:
-        print(f"\033[42m VOCÊ GANHOU \033[m")
-        jogador = "TESOURA"
-
-    elif jogador == 1:
-        print(f"\033[41m VOCÊ PERDEU! \033[m")
-        jogador = "PEDRA"
-
-    else:
-        print("\033[35m JOGADA INVÁLIDA! \033[m")
-        sorteio = "nenhuma opção"
-        jogador = "OPÇAO ERRADA"
-
-print(f"Você escolheu {jogador} e o computador escolheu {sorteio}!")
+        print("\033[1;41mDigite uma opção válida!!\033[m")
+print("fim")
