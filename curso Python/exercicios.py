@@ -1,27 +1,23 @@
 # ex 65
-veri = True
+op = "s"
 media = 0
 soma = 0
-lista = []
-while veri == True:
-    digi = int(input("Digite um número: "))
-    media += 1
-    soma += digi
-    lista.append(digi)
-    send = True
-    while send == True:
-        op = input("Quer continuar [S]/[N]: ").lower()
-        if op == "s":
-            break
+cont = 0
+maior = 0
+menor = 0
+while op == "s":
+    num = int(input("Digite um número: "))
+    cont += 1
+    soma += num
+    if cont == 1:
+        maior = menor = num
+    else:
+        if num > maior:
+            maior = num
+        elif num < menor:
+            menor = num
 
-        elif op == "n":
-            send = False
-            veri = False
+    op = str(input("Digite [S] para continuar e [N] para parar: ")).lower()
+media = soma / cont
 
-        else:
-            print("tetente novamente")
-            send = True
-
-print(
-    f"A media é de {soma/media:.1f} o maior valor é {max(lista)} e o menor é {min(lista)}"
-)
+print(f"  A media é de {media:.2f} o maior valor é {maior} e o menor é {menor} ")

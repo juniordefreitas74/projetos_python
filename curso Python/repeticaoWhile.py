@@ -8,6 +8,14 @@ while p == True:
         p = False
 print("fim")
 
+# ex 57
+sexo = str(input("DIGITE SEU SEXO [M/F]: ")).upper().strip()[0]
+while sexo not in "fmFM":
+    print("Opção inválida!")
+    sexo = str(input("Digite um sexo válido: ")).upper().strip()[0]
+print(f"O sexo {sexo} foi registrado!")
+
+
 # ex 58
 import random
 
@@ -24,6 +32,26 @@ while acerto == True:
         acerto = False
     else:
         print("Não foi esse número que eu pensei, tente novamente!")
+
+        # ex 58
+import random
+
+tentativas = 0
+acerto = False
+pc = random.randint(0, 10)
+while not acerto:
+    numero = int(input("Adivinhe o número estou pensando de 0 a 10: "))
+    tentativas += 1
+    if numero == pc:
+        acerto = True
+    else:
+        if numero < pc:
+            print("Quase, maso número é um pouco maior.")
+        elif numero > pc:
+            print("Quase, mas o número é menor que seu palpite.")
+
+print(f"\033[31mParabéns\033[m você acertou em \033[32m{tentativas}\033[m tentativas!")
+
 
 # ex 59
 numero = []
@@ -90,6 +118,30 @@ while oi < (num - 1):
     oi += 1
 print(f"O fatorial de {num} é {tete}")
 
+# ex 60
+import math
+
+n = int(input("Digite um número: "))
+f = math.factorial(n)
+print(f"O fatorial de {n} é {f}")
+
+# ex 60
+n = int(input("Digite um número: "))
+c = n
+f = 1
+print(f"Calculando {n} fatorial")
+while c > 0:
+    print(f"{c}", end=" ")
+    if c > 1:
+        print(" x ", end=" ")
+    else:
+        print(" = ", end=" ")
+    # print(" x " if c > 1 else " = ", end="")
+    f *= c
+    c -= 1
+print(f"{f}")
+
+
 # ex 61
 # exercicio 51
 # an=a1+(n-1).r
@@ -107,6 +159,19 @@ while termo <= 10:
     print(f"O {termo}º termo é = {an}.")
     termo += 1
 print("fim")
+
+# ex 61
+
+a1 = int(input("Digite o primeiro termo: "))
+r = int(input("Digite a razão: "))
+contador = 1
+termo = a1
+while contador <= 10:
+    print(f"O {contador}º termo é = {termo}.")
+    termo += r
+    contador += 1
+print("fim")
+
 
 # ex 62
 
@@ -162,6 +227,22 @@ while f < num:
     f += 1
 print(*fibo)
 
+# ex 63
+num = int(input("digite um número: "))
+inicio = 0
+numero = 1
+
+f = 0
+print(f"A sequência de {num} números fibonaccis são:")
+while f < num:
+
+    soma = inicio + numero
+    print(soma, end=" ")
+    numero = inicio
+    inicio = soma
+    f += 1
+print(" ↣ FIM")
+
 # ex 64
 soma = 0
 qtd = 0
@@ -178,18 +259,17 @@ print(f"Foram digitados {qtd} números e a soma deles é {soma}.")
 
 
 # ex 64
-soma = 0
-qtd = 0
-veri = True
-while veri == True:
-    num = int(input("digite um número: "))
-    if num == 999:
-        veri = False
-    else:
-        soma += num
-        qtd += 1
 
-print(f"Foram digitados {qtd} números e a soma deles é {soma}.")
+num = 0
+cont = 0
+soma = 0
+num = int(input("Digite um numero [999 para parar]: "))
+while num != 999:
+    cont += 1
+    soma += num
+    num = int(input("Digite um numero [999 para parar]: "))
+print(f" Você digitou {cont} números e a soma deles é {soma}.")
+
 
 # ex 65
 veri = True
@@ -218,3 +298,27 @@ while veri == True:
 print(
     f"A media é de {soma/media:.1f} o maior valor é {max(lista)} e o menor é {min(lista)}"
 )
+
+# ex 65
+op = "s"
+media = 0
+soma = 0
+cont = 0
+maior = 0
+menor = 0
+while op == "s":
+    num = int(input("Digite um número: "))
+    cont += 1
+    soma += num
+    if cont == 1:
+        maior = menor = num
+    else:
+        if num > maior:
+            maior = num
+        elif num < menor:
+            menor = num
+
+    op = str(input("Digite [S] para continuar e [N] para parar: ")).lower()
+media = soma / cont
+
+print(f"  A media é de {media:.2f} o maior valor é {maior} e o menor é {menor} ")
