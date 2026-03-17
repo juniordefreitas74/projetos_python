@@ -1,23 +1,21 @@
-# ex 65
-op = "s"
-media = 0
-soma = 0
+# exe 74
+import random
+
 cont = 0
-maior = 0
-menor = 0
-while op == "s":
-    num = int(input("Digite um número: "))
+tupla = ()
+num = ()
+while True:
+    gera = random.randint(0, 20)
+    num2 = (gera,)
+    num = num + num2
+
+    # teste = num + tupla
     cont += 1
-    soma += num
-    if cont == 1:
-        maior = menor = num
-    else:
-        if num > maior:
-            maior = num
-        elif num < menor:
-            menor = num
 
-    op = str(input("Digite [S] para continuar e [N] para parar: ")).lower()
-media = soma / cont
+    if cont == 5:
+        break
+    ordem = sorted(num)
 
-print(f"  A media é de {media:.2f} o maior valor é {maior} e o menor é {menor} ")
+print(num)
+print(f" O maior número é o {ordem[-1]}")
+print(f"O menor número é o {ordem[0]}")
