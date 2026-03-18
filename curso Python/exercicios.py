@@ -1,21 +1,22 @@
-# exe 74
-import random
-
+# exe 75
 cont = 0
 tupla = ()
-num = ()
-while True:
-    gera = random.randint(0, 20)
-    num2 = (gera,)
-    num = num + num2
-
-    # teste = num + tupla
+pares = []
+while cont < 4:
+    num = int(input("Digite um número: "))
+    tupla += (num,)
     cont += 1
+    if num % 2 == 0:
+        pares += (num,)
 
-    if cont == 5:
-        break
-    ordem = sorted(num)
+num9 = tupla.count(9)
+if 3 in tupla:
+    pos3 = tupla.index(3) + 1
+else:
+    pos3 = "0"
 
-print(num)
-print(f" O maior número é o {ordem[-1]}")
-print(f"O menor número é o {ordem[0]}")
+
+print(tupla)
+print(f"O número 9 aparece {num9} vezes.")
+print(f"O número 3 apareceu na posição {pos3}")
+print(f"Os números pares digitados foram {' '.join(map(str,pares))}")
