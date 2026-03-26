@@ -52,11 +52,17 @@ brasileirao = (
     "Cruzeiro",
     "Intenacional",
 )
-print(brasileirao[0:5])
-print(brasileirao[-4:])
-print(sorted(brasileirao))
+print("-=" * 50)
+print(f" os 5 primeiros são {brasileirao[0:5]}")
+print("-=" * 50)
+print(f"Os 4 últimos são {brasileirao[-4:]}")
+print("-=" * 50)
+print(f"Em ordem alfabética é {sorted(brasileirao)}")
+print("-=" * 50)
 poschap = brasileirao.index("Chapecoense")
-print(f"A Chapecoense está na {poschap}ª posição.")
+print(f"A Chapecoense está na {poschap+1}ª posição.")
+print("-=" * 50)
+
 
 # exe 74
 import random
@@ -80,6 +86,25 @@ while True:
 print(*num, sep=" - ")
 print(f" O maior número é o {ordem[-1]}")
 print(f"O menor número é o {ordem[0]}")
+
+# exe 74
+import random
+
+cont = 0
+tupla = ()
+num = (
+    random.randint(1, 20),
+    random.randint(1, 20),
+    random.randint(1, 20),
+    random.randint(1, 20),
+    random.randint(1, 20),
+)
+
+print("Os números sorteados foram: ")
+for c in num:
+    print(f"{c}", end=" ")
+print(f" \nO maior número é o {max(num)}")
+print(f"O menor número é o {min(num)}")
 
 
 # exe 75
@@ -135,3 +160,59 @@ print("-" * 50)
 for c, d in zip(intem, preco):
     print(f"{c}".ljust(30, "."), "R$", f"{d:.2f}".rjust(6))
 print("-" * 50)
+
+# exe 76
+produtos = (
+    "Lápis",
+    1.75,
+    "Borracha",
+    2,
+    "Caderno",
+    15.9,
+    "Estojo",
+    25,
+    "Tranferidor",
+    4.2,
+    "Compasso",
+    9.99,
+    "Mochila",
+    120.32,
+    "Canetas",
+    22.30,
+    "Livro",
+    34.90,
+)
+intem = produtos[0::2]
+preco = produtos[1::2]
+print("-" * 50)
+print("LISTA DE PREÇOS".center(50))
+print("-" * 50)
+for i, p in zip(intem, preco):
+    print(f"{i:.<30}R$ {p:.2f}")
+
+
+# exe 77
+
+palavras = (
+    "planeta",
+    "satelite",
+    "banco",
+    "banheiro",
+    "tecnologia",
+    "video",
+    "predestinado",
+    "pernambuco",
+    "junior",
+)
+
+vogais = ""
+cont = 0
+while cont < (len(palavras)):
+    solitaria = palavras[cont]
+    for c in solitaria:
+        if c in "aeiou":
+            vogais += c
+    print(f"Na palavra {solitaria.upper()} temos as vogais {' '.join(vogais)} ")
+    vogais = ""
+    cont += 1
+print("Fim")
