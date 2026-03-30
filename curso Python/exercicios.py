@@ -1,19 +1,21 @@
 # exe 95
-geral = {}
+
+
+jogador = {}
 total = []
 while True:
-    geral["nome"] = str(input("Nome do jogador: "))
-    partidas = int(input(f'Quantas partidas {geral["nome"]} jogou: '))
+    jogador["nome"] = str(input("Nome do jogador: "))
+    partidas = int(input(f'Quantas partidas {jogador["nome"]} jogou: '))
     gols = []
     totalgol = 0
     for p in range(0, partidas):
         gol = int(input(f"Quantos gols na partida {p}? "))
         gols.append(gol)
         totalgol += gol
-    geral["gols"] = gols
-    geral["total"] = totalgol
-    total.append(geral.copy())
-    geral.clear()
+    jogador["gols"] = gols
+    jogador["total"] = totalgol
+    total.append(jogador.copy())
+    jogador.clear()
     resposta = str(input("Quer continuar? [S/N] ")).lower().strip()[0]
     if resposta == "n":
         break

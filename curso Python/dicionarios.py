@@ -1,37 +1,41 @@
 # exe 90
 aluno = {}
 aluno["nome"] = str(input("Nome: "))
-aluno["media"] = int(input(f"Média de {aluno['nome']}: "))
+aluno["media"] = float(input(f"Média de {aluno['nome']}: "))
 print(f'O nome é igual a {aluno["nome"]}')
 print(f'A média é igual a {aluno["media"]}')
 if aluno["media"] >= 7:
     print("A situação é igual a APROVADO")
+elif aluno["media"] >= 5:
+    print("A situação é igual a RECUPERAÇÃO")
 else:
     print("A situação é igual a REPROVADO")
+
 # exe 91
 import random
 import time
+import operator
 
-ordem = []
-ind = 0
-lista = []
-sorteio = {}
-for j in range(1, 5):
-    sorteio["jogador"] = random.randint(1, 6)
-    lista.append(sorteio.copy())
-    print(f"O jogador {j} tirou {sorteio['jogador']}")
-    time.sleep(0.7)
-for p in lista:
-    print(p["jogador"])
-    if p["jogador"] > ind:
-        ind = p["jogador"]
-    else:
-        print("oi")
-print(f"O vencedor foi {ind}")
-# for j in sorteio.copy():
-#     print(f"Em {j}º lugar tirou {j} ")
-# print(sorteio)
-print(lista)
+jogo = {
+    "jogador 1": random.randint(1, 6),
+    "jogador 2": random.randint(1, 6),
+    "jogador 3": random.randint(1, 6),
+    "jogador 4": random.randint(1, 6),
+}
+ranking = {}
+print("Valores sorteados:")
+for i, j in jogo.items():
+    print(f"{i} tirou {j} no dado.")
+    time.sleep(0.5)
+ranking = sorted(
+    jogo.items(), key=operator.itemgetter(1), reverse=True
+)  # ordena dicionário
+print("-=" * 20)
+print("     === RANKING DOS JOGADORES ===")
+for c, v in enumerate(ranking):
+    print(f"       {c+1}º lugar: {v[0]} com {v[1]}")
+print("-=" * 20)
+print()
 
 # exe 92
 import datetime
@@ -64,36 +68,34 @@ while True:
         break
 
 # exe 93
-geral = {}
-geral["nome"] = str(input("Nome do jogador: "))
-partidas = int(input(f'Quantas partidas {geral["nome"]} jogou: '))
+jogador = {}
+jogador["nome"] = str(input("Nome do jogador: "))
+partidas = int(input(f'Quantas partidas {jogador["nome"]} jogou: '))
 gols = []
 totalgol = 0
 for p in range(0, partidas):
-    gol = int(input(f"Quantos gols na partida {p}? "))
-    gols.append(gol)
-    totalgol += gol
-geral["gols"] = gols
-geral["total"] = totalgol
+    gols.append(int(input(f"Quantos gols na partida {p}? ")))
+
+jogador["gols"] = gols
+jogador["total"] = sum(gols)
 
 print("=-" * 30)
-print(geral)
+print(jogador)
 print("=-" * 30)
 print()
+for i, v in jogador.items():
+    print(f"O campo {i} tem o valor {v}.")
 
-print(f'O campo nome tem o valor {geral["nome"]}.')
-print(f"O campo gols tem o valor {geral['gols']}.")
-print(f'O campo total tem o valor {geral["total"]}.')
 print()
 
 print("=-" * 30)
 
 print()
 
-print(f'O jogador {geral["nome"]} jogou {partidas} partidas.')
-for i, g in enumerate(geral["gols"]):
+print(f'O jogador {jogador["nome"]} jogou {partidas} partidas.')
+for i, g in enumerate(jogador["gols"]):
     print(f"    => Na partida {i}, ele fez {g} gols.")
-print(f'Foi um total de {geral["total"]} gols.')
+print(f'Foi um total de {jogador["total"]} gols.')
 
 
 print()
@@ -106,14 +108,22 @@ soma = 0
 acima = []
 while True:
     pessoa["nome"] = str(input("Nome: ")).upper()
-    pessoa["sexo"] = str(input("Sexo: [F/M] ")).upper().strip()[0]
+    while True:
+        pessoa["sexo"] = str(input("Sexo: [F/M] ")).upper().strip()[0]
+        if pessoa["sexo"] in "FM":
+            break
+        print("ERRO! Por favor digite apenas M ou F.")
     pessoa["idade"] = int(input("Idade: "))
     grupo.append(pessoa.copy())
     if pessoa["sexo"] == "F":
         mulheres.append(pessoa.copy())
 
     pessoa.clear()
-    resposta = str(input("Quer continuar? [S/N] ")).lower().strip()[0]
+    while True:
+        resposta = str(input("Quer continuar? [S/N] ")).lower().strip()[0]
+        if resposta in "sn":
+            break
+        print("ERRO! Por favor digite apenas S ou N.")
     if resposta == "n":
         break
 
@@ -127,7 +137,7 @@ for h in grupo:
 print("=-" * 35)
 print()
 print(f"O grupo tem {len(grupo)} pessoas.")
-print(f"A média de idade é de {media:.2f} anos.")
+print(f"A média de idade é de {media:5.2f} anos.")
 print("As mulheres cadastradas foram: ", end=" ")
 for m in mulheres:
     print(m["nome"], end=" ")
