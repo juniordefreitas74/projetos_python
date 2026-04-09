@@ -146,4 +146,4 @@ while True:
                 atual_venda["vendidos"] += quantidade_venda
                 atual_venda["vendas"] += 1
 
-                print(atual_venda)
+                print(atual_vend
